@@ -246,7 +246,7 @@ a {
   position: relative;
   min-height: min(100svh, 52rem);
   display: grid;
-  align-items: end;
+  align-items: center;
   overflow: hidden;
   color: var(--white);
   background: var(--midnight);
@@ -313,21 +313,22 @@ a {
 .hero__content {
   position: relative;
   z-index: 1;
-  width: min(100% - 2rem, var(--max));
+  width: min(100% - 2rem, 56rem);
   margin: 0 auto;
-  padding: 7rem 0 4.5rem;
+  padding: 5.5rem 0 5rem;
+  text-align: center;
 }
 
 .hero__brand {
   height: 3.4rem;
   width: auto;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero h1 {
-  max-width: 14ch;
-  margin: 0;
+  max-width: none;
+  margin: 0 auto;
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 7vw, 4.4rem);
   font-weight: 800;
@@ -337,8 +338,8 @@ a {
 }
 
 .hero__lead {
-  max-width: 34rem;
-  margin: 1.25rem 0 0;
+  max-width: 42rem;
+  margin: 1.25rem auto 0;
   font-size: clamp(1.05rem, 2.2vw, 1.3rem);
   line-height: 1.55;
   color: color-mix(in srgb, var(--white) 82%, transparent);
@@ -348,6 +349,7 @@ a {
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: 2.25rem;
   animation: rise-in 800ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
