@@ -1,0 +1,4 @@
+# Alias for /llms.txt — see https://ewapevents.nl/llms.txt
+# Prefer the plural form; this file exists for crawlers that request /llm.txt.
+
+See: https://ewapevents.nl/llms.txt

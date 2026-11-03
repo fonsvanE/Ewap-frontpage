@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EWAP · Wordmark only · voor contexten waar het icoon al elders staat -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140"
+     font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <title>EWAP Wordmark</title>
+  <text x="20" y="105" font-size="108" font-weight="800" fill="#0B1B34" letter-spacing="-4">EWAP</text>
+  <circle cx="460" cy="45" r="8" fill="#F5A524"/>
+</svg>

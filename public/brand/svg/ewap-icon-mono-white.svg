@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EWAP · Monochrome wit icoon (voor dark surfaces, negatief drukwerk) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <title>EWAP Icon — Monochrome White</title>
+  <g fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round">
+    <path d="M 40 90 Q 100 50 180 90"/>
+    <path d="M 40 130 Q 110 70 200 130"/>
+    <path d="M 40 170 Q 120 100 210 170"/>
+  </g>
+  <circle cx="210" cy="170" r="10" fill="#FFFFFF"/>
+</svg>

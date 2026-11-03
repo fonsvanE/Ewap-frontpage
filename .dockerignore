@@ -1,0 +1,10 @@
+.git
+.github
+.cursor
+.gitignore
+README.md
+DEPLOY.md
+docker-compose.yml
+portainer-stack.yml
+*.md
+.DS_Store

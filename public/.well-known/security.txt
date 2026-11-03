@@ -1,0 +1,6 @@
+Contact: mailto:security@ewapevents.nl
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: nl, en
+Canonical: https://ewapevents.nl/.well-known/security.txt
+Policy: https://ewapevents.nl/security.txt
+Hiring: https://ewapevents.nl/

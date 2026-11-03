@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EWAP · Favicon 32×32 · optimized for small sizes (dikkere strokes, minder detail) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <title>EWAP Favicon</title>
+  <rect width="32" height="32" rx="6" fill="#0B1B34"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M 6 12 Q 14 7 24 12" stroke="#FFFFFF" stroke-width="2.5"/>
+    <path d="M 6 18 Q 15 10 25 18" stroke="#FFFFFF" stroke-width="2.5"/>
+    <path d="M 6 24 Q 16 14 26 24" stroke="#F5A524" stroke-width="2.5"/>
+  </g>
+</svg>

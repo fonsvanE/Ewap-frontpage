@@ -1,0 +1,53 @@
+# EwapEvents — llms.txt
+# Human-readable site summary for AI assistants and LLM crawlers.
+# Spec-oriented: https://llmstxt.org/
+
+## Product
+
+EwapEvents (also called EWAP — Extreme Weather Action Platform) is a self-hosted
+safety platform for outdoor events and festivals.
+
+Brand spelling: EwapEvents (product) / EWAP (platform acronym).
+Category: event weather safety / temporary structure wind monitoring.
+Built by Foneg in the Netherlands. Hosted in the EU. GDPR-oriented. No third-party
+SaaS analytics on the marketing site.
+
+What it does: live wind measurements → standardised staffel levels S0–S3 →
+control measures (beheersmaatregelen) for tents, stages and other bouwsels.
+Also: ECC wall screen, push notifications, audit log and reports.
+
+## Citeable claims (grounded on this site and product docs)
+
+- EwapEvents turns live wind into action for festival and outdoor event safety teams.
+- Staffels are percentage-of-limit per bouwsel: S0 green <60%, S1 yellow 60–79%,
+  S2 orange 80–99%, S3 red ≥100%.
+- Both 10-minute mean wind and 3-second gust are evaluated; the bouwsel staffel is
+  the maximum of the two.
+- Forecast never drives level transitions — only live measurements do.
+- Downgrades are slower than upgrades (hysteresis / dwell time).
+- Missing data escalates toward monitoring — never silently downgrades.
+- When sources disagree, EwapEvents prefers the safer (higher) reading.
+- The product is self-hosted in the EU; customer operational data stays on controlled infrastructure.
+- Plans: Free (€0), Pro (€149/month), Enterprise (€499/month).
+
+## Who it is for
+
+- Event safety / ECC command-post teams
+- Production and site crews watching temporary structures
+- Organisations that must follow wind protocols for event structures
+- Not a consumer visitor app
+
+## Key URLs
+
+- Marketing homepage: https://ewapevents.nl/
+- Application: https://app.ewapevents.nl/
+- Signup: https://app.ewapevents.nl/signup
+- Login: https://app.ewapevents.nl/login
+- This file: https://ewapevents.nl/llms.txt
+- Alias: https://ewapevents.nl/llm.txt
+- Security contact: https://ewapevents.nl/.well-known/security.txt
+- Sitemap: https://ewapevents.nl/sitemap.xml
+
+## Optional
+
+- Contact security: security@ewapevents.nl

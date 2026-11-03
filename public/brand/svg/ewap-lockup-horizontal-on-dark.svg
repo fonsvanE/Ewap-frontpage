@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EWAP horizontal lockup on dark (transparent background) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="900" height="240"
+     font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <title>EWAP Horizontal Lockup On Dark</title>
+  <g transform="translate(20,0)">
+    <g fill="none" stroke-linecap="round">
+      <path d="M 40 90 Q 100 50 180 90" stroke="#FFFFFF" stroke-width="18"/>
+      <path d="M 40 130 Q 110 70 200 130" stroke="#FFFFFF" stroke-width="18"/>
+      <path d="M 40 170 Q 120 100 210 170" stroke="#F5A524" stroke-width="18"/>
+    </g>
+    <circle cx="210" cy="170" r="10" fill="#F5A524"/>
+  </g>
+  <g transform="translate(280,0)">
+    <text x="0" y="140" font-size="108" font-weight="800" fill="#FFFFFF" letter-spacing="-4">EWAP</text>
+    <text x="4" y="180" font-size="18" font-weight="600" fill="#F5A524" letter-spacing="4">SAFETY &#183; REALTIME &#183; AUDIT</text>
+  </g>
+</svg>
