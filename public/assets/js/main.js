@@ -114,14 +114,18 @@
         const ahead = local.level > siteLevel;
         const note = ahead ? "strenger dan event" : local.level < siteLevel ? "lager dan event" : "gelijk aan event";
         const li = document.createElement("li");
+        li.className = "bouwsel-card";
+        li.dataset.bouwselLevel = String(local.level);
+        li.style.setProperty("--bouwsel-bg", local.bg);
+        li.style.setProperty("--bouwsel-fg", local.fg);
         li.innerHTML = `
-          <span class="bouwsel-dot" style="--dot:${local.bg}" aria-hidden="true"></span>
+          <span class="bouwsel-dot" aria-hidden="true"></span>
           <span class="bouwsel-meta">
             <span class="bouwsel-name">${item.name}</span>
             <span class="bouwsel-note">${note}</span>
           </span>
           <span class="bouwsel-pct">
-            <span class="bouwsel-level-pill" style="background:${local.bg};color:${local.fg}">L${local.level}</span>
+            <span class="bouwsel-level-pill">L${local.level}</span>
             ${local.name}
           </span>
         `;
