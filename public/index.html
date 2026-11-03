@@ -37,8 +37,8 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/brand/svg/ewap-icon-primary.svg" />
-    <link rel="stylesheet" href="/assets/css/fonts.css?v=14" />
-    <link rel="stylesheet" href="/assets/css/main.css?v=14" />
+    <link rel="stylesheet" href="/assets/css/fonts.css?v=15" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=15" />
 
     <script type="application/ld+json">
       {
@@ -213,63 +213,52 @@
         </div>
       </section>
 
-      <section id="maya" class="section section--maya" aria-labelledby="maya-title">
-        <div class="wrap maya">
-          <div class="maya__copy">
-            <p class="section__eyebrow">Maak kennis</p>
+      <section id="weer" class="section section--maya" aria-labelledby="maya-title">
+        <div id="maya" class="wrap maya">
+          <div class="maya__intro">
+            <p class="section__eyebrow">Maak kennis · Extreme Weather Action</p>
             <h2 id="maya-title">Maya, de organisator</h2>
-            <p class="section__lead">
+            <p class="maya__lead">
               Maya organiseert lokale evenementen: braderieën, Koningsdag, dorpsfeesten. Met EWAP
-              maakt ze haar beheersplan, deelt ze met de gemeente en krijgt ze alarmen op haar
-              telefoon als het weer grenzen nadert.
+              bewaakt ze wind, bliksem, regen en hitte — en krijgt ze alarmen als grenzen naderen.
             </p>
+            <figure class="maya__media">
+              <video
+                class="maya__video"
+                controls
+                playsinline
+                preload="metadata"
+                poster="/media/maya-event-organizer.jpg"
+                width="1280"
+                height="720"
+              >
+                <source src="/media/maya-event-organizer.mp4" type="video/mp4" />
+                Je browser ondersteunt geen video. Bekijk Maya via een recente browser.
+              </video>
+            </figure>
           </div>
-          <figure class="maya__media">
-            <video
-              class="maya__video"
-              controls
-              playsinline
-              preload="metadata"
-              poster="/media/maya-event-organizer.jpg"
-              width="1280"
-              height="720"
-            >
-              <source src="/media/maya-event-organizer.mp4" type="video/mp4" />
-              Je browser ondersteunt geen video. Bekijk Maya via een recente browser.
-            </video>
-          </figure>
-        </div>
-      </section>
 
-      <section id="weer" class="section section--paper" aria-labelledby="weer-title">
-        <div class="wrap">
-          <div class="section__head">
-            <p class="section__eyebrow">Extreme Weather Action</p>
-            <h2 id="weer-title">Meer dan alleen wind</h2>
-            <p class="section__lead">
-              EWAP is het Extreme Weather Action Platform. Het koppelt live weersignalen aan
-              duidelijke maatregelen — zodat de commandopost niet in Excel of WhatsApp hoeft te
-              zoeken.
-            </p>
+          <div class="maya__weather" aria-labelledby="weer-title">
+            <h3 id="weer-title">Weersomstandigheden die Maya bewaakt</h3>
+            <ul class="hazards hazards--on-dark" aria-label="Weerrisico's">
+              <li>
+                <strong>Wind</strong>
+                <span>Piekwind en gemiddelde · levels 0–4 inclusief paars.</span>
+              </li>
+              <li>
+                <strong>Bliksem</strong>
+                <span>Strikes op de kaart en afstand tot het terrein.</span>
+              </li>
+              <li>
+                <strong>Regen</strong>
+                <span>Neerslag in beeld voor planning en terreinbesluiten.</span>
+              </li>
+              <li>
+                <strong>Zon &amp; hitte</strong>
+                <span>Belasting door fel zonlicht en temperatuur meenemen.</span>
+              </li>
+            </ul>
           </div>
-          <ul class="hazards" aria-label="Weerrisico's">
-            <li>
-              <strong>Wind</strong>
-              <span>Piekwind en gemiddelde · levels 0–4 inclusief paars.</span>
-            </li>
-            <li>
-              <strong>Bliksem</strong>
-              <span>Strikes op de kaart en afstand tot het terrein.</span>
-            </li>
-            <li>
-              <strong>Regen</strong>
-              <span>Neerslag in beeld voor planning en terreinbesluiten.</span>
-            </li>
-            <li>
-              <strong>Zon &amp; hitte</strong>
-              <span>Belasting door fel zonlicht en temperatuur meenemen.</span>
-            </li>
-          </ul>
         </div>
       </section>
 
