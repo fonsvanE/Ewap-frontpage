@@ -588,14 +588,11 @@
   initWeatherCanvas(document.querySelector("[data-hero-canvas]"), {
     sceneEl: document.querySelector(".hero"),
     labelEl: document.querySelector("[data-weather-label]"),
-  });
-  initWeatherCanvas(document.querySelector("[data-maya-canvas]"), {
-    sceneEl: document.querySelector("[data-maya-scene]"),
     modes: [
       { id: "wind", label: "Wind" },
       { id: "rain", label: "Regen" },
       { id: "lightning", label: "Bliksem" },
-      { id: "sun", label: "Zon" },
+      { id: "sun", label: "Zon & hitte" },
     ],
   });
   initAudience();
