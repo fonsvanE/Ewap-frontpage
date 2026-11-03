@@ -15,57 +15,41 @@
 }
 
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/assets/fonts/manrope-400.woff2') format('woff2');
+  src: url('/assets/fonts/inter-400.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/assets/fonts/manrope-500.woff2') format('woff2');
+  src: url('/assets/fonts/inter-500.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/assets/fonts/manrope-600.woff2') format('woff2');
+  src: url('/assets/fonts/inter-600.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/assets/fonts/manrope-700.woff2') format('woff2');
+  src: url('/assets/fonts/inter-700.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/assets/fonts/syne-600.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/assets/fonts/syne-700.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Syne';
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url('/assets/fonts/syne-800.woff2') format('woff2');
+  src: url('/assets/fonts/inter-800.woff2') format('woff2');
 }

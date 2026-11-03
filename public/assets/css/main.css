@@ -20,8 +20,8 @@
   --s2-fg: #0b1b34;
   --s3-bg: #ff0000;
   --s3-fg: #ffffff;
-  --font-display: "Syne", sans-serif;
-  --font-body: "Manrope", sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --max: 68rem;
   --header-h: 4.25rem;
