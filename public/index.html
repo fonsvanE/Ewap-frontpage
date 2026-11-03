@@ -37,8 +37,8 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/brand/svg/ewap-icon-primary.svg" />
-    <link rel="stylesheet" href="/assets/css/fonts.css?v=5" />
-    <link rel="stylesheet" href="/assets/css/main.css?v=5" />
+    <link rel="stylesheet" href="/assets/css/fonts.css?v=6" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=6" />
 
     <script type="application/ld+json">
       {
@@ -118,7 +118,7 @@
                 "name": "Voor wie is EwapEvents?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Voor veiligheidsteams, ECC/commandoposten, productie en site op festivals en outdoor events die bij weersextremen moeten beslissen over tenten, podia en andere bouwsels."
+                  "text": "Voor drie groepen: (1) organisatoren van kleine lokale events en marktpleinen zoals braderieën en Koningsdag; (2) professionele eventproducenten van grote festivals en openluchtevenementen; (3) gemeentes, vergunningverleners en handhavers die beheersplannen toetsen en live meekijken."
                 }
               },
               {
@@ -380,47 +380,234 @@
       </section>
 
       <section id="voor-wie" class="section section--white" aria-labelledby="audience-title">
-        <div class="wrap audience">
-          <div>
-            <div class="section__head">
-              <p class="section__eyebrow">Doelgroep</p>
-              <h2 id="audience-title">Voor wie het is</h2>
-              <p class="section__lead">
-                Niet voor de bezoeker. Wel voor de mensen die bij weersextremen moeten beslissen.
-              </p>
-            </div>
-            <ul>
-              <li>Veiligheidsteams en ECC / commandopost op festivals</li>
-              <li>Productie en site die tenten, podia en frames bewaken</li>
-              <li>Organisaties die weerprotocollen serieus moeten volgen</li>
-              <li>Teams die auditvaste rapporten nodig hebben na afloop</li>
-            </ul>
+        <div class="wrap">
+          <div class="section__head">
+            <p class="section__eyebrow">Drie werelden · één platform</p>
+            <h2 id="audience-title">Voor wie het is</h2>
+            <p class="section__lead">
+              Kies jouw rol. EWAP past zich aan — van braderie tot festivalterrein tot
+              gemeenteloket.
+            </p>
           </div>
-          <aside class="facts" aria-label="Kernfeiten">
-            <div>
-              <strong>Weerbreed</strong>
-              <span>Wind, bliksem, regen, hitte</span>
-            </div>
-            <div>
-              <strong>0–4</strong>
-              <span>Groen → geel → oranje → rood → paars</span>
-            </div>
-            <div>
-              <strong>Live + forecast</strong>
-              <span>Actie op live metingen</span>
-            </div>
-            <div>
-              <strong>100% EU</strong>
-              <span>Self-hosted · jouw data</span>
-            </div>
-          </aside>
+
+          <div class="audience-switch" role="tablist" aria-label="Doelgroepen">
+            <button
+              type="button"
+              class="audience-tab"
+              role="tab"
+              id="tab-lokaal"
+              aria-selected="true"
+              aria-controls="panel-lokaal"
+              data-audience-tab="lokaal"
+            >
+              Kleine events &amp; markten
+            </button>
+            <button
+              type="button"
+              class="audience-tab"
+              role="tab"
+              id="tab-pro"
+              aria-selected="false"
+              aria-controls="panel-pro"
+              data-audience-tab="pro"
+            >
+              Professioneel &amp; groot
+            </button>
+            <button
+              type="button"
+              class="audience-tab"
+              role="tab"
+              id="tab-gemeente"
+              aria-selected="false"
+              aria-controls="panel-gemeente"
+              data-audience-tab="gemeente"
+            >
+              Gemeentes &amp; vergunning
+            </button>
+          </div>
+
+          <div
+            class="audience-panel is-active"
+            role="tabpanel"
+            id="panel-lokaal"
+            aria-labelledby="tab-lokaal"
+            data-audience-panel="lokaal"
+          >
+            <p class="audience-panel__kicker">Braderieën · Koningsdag · dorpsfeesten</p>
+            <h3>Voor kleine evenementen &amp; marktpleinen</h3>
+            <dl class="audience-dl">
+              <div>
+                <dt>Voor wie?</dt>
+                <dd>
+                  Organisatoren van kleinere, lokale evenementen op pleinen en straten — zoals
+                  braderieën, Koningsdag en buurtfeesten — die snel en eenvoudig willen voldoen aan
+                  de gemeentelijke eisen voor tijdelijke bouwwerken en tenten, zonder ingewikkelde
+                  technische rompslomp.
+                </dd>
+              </div>
+              <div>
+                <dt>Wat is EWAP?</dt>
+                <dd>
+                  Jouw alles-in-één app om de veiligheid van al je bouwwerken (zoals kramen, podia
+                  en tenten) te regelen. Je stelt eenvoudig een beheersplan op, dient dit in bij de
+                  gemeente en bewaakt tijdens het evenement de wind- en weerslimieten. Wordt een
+                  grenswaarde overschreden? Dan krijg je direct een melding op je telefoon zodat je
+                  op tijd actie kunt ondernemen.
+                </dd>
+              </div>
+              <div>
+                <dt>Hoe werkt het?</dt>
+                <dd>
+                  <ol>
+                    <li>
+                      <strong>Plan maken</strong> — Voer je bouwwerken in en genereer met een paar
+                      klikken je officiële beheersplan.
+                    </li>
+                    <li>
+                      <strong>Indienen</strong> — Deel het plan direct met de gemeente voor
+                      goedkeuring.
+                    </li>
+                    <li>
+                      <strong>Beheren &amp; alarm</strong> — Tijdens het evenement meet EWAP het
+                      weer in real-time. Bij gevaarlijke windstoten of overschrijdingen ontvang je
+                      direct een helder alarm.
+                    </li>
+                  </ol>
+                </dd>
+              </div>
+              <div>
+                <dt>Waar gebruik je het?</dt>
+                <dd>
+                  Overal waar je buiten een tijdelijk evenement organiseert en zeker wilt weten dat
+                  je bouwwerken veilig blijven staan volgens de regels.
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div
+            class="audience-panel"
+            role="tabpanel"
+            id="panel-pro"
+            aria-labelledby="tab-pro"
+            data-audience-panel="pro"
+            hidden
+          >
+            <p class="audience-panel__kicker">Festivals · stadsfeesten · sportevents</p>
+            <h3>Voor professionele evenementen &amp; grote organisatoren</h3>
+            <dl class="audience-dl">
+              <div>
+                <dt>Voor wie?</dt>
+                <dd>
+                  Professionele eventproducenten en grootschalige organisaties die werken met
+                  meerdere complexe bouwwerken, diverse risicogroepen, verdeelde terreinen en de
+                  behoefte hebben aan geavanceerd wind- en veiligheidsbeheer.
+                </dd>
+              </div>
+              <div>
+                <dt>Wat is EWAP?</dt>
+                <dd>
+                  Een krachtig en schaalbaar platform dat volledige controle biedt over complexe
+                  evenemententerreinen. Beheer meerdere bouwwerken tegelijk, koppel geavanceerde
+                  groepsindelingen aan specifieke zones, en configureer gedetailleerde
+                  notificatiestromen en escalatielijnen voor je productieteam en
+                  veiligheidscoördinatoren.
+                </dd>
+              </div>
+              <div>
+                <dt>Hoe werkt het?</dt>
+                <dd>
+                  <ol>
+                    <li>
+                      <strong>Multi-site setup</strong> — Definieer grootschalige beheersplannen en
+                      koppel specifieke bouwwerken aan verschillende locaties of podia op het
+                      terrein.
+                    </li>
+                    <li>
+                      <strong>Diepgaande monitoring</strong> — Koppel professionele meetsystemen en
+                      stel gelaagde grenswaarden in (waarschuwingen vs. actie-triggers).
+                    </li>
+                    <li>
+                      <strong>Gerichte alarmering</strong> — Stuur automatische, op maat gemaakte
+                      notificaties naar specifieke operationele teams, hoofden productie of de
+                      beveiliging zodra de situatie daarom vraagt.
+                    </li>
+                  </ol>
+                </dd>
+              </div>
+              <div>
+                <dt>Waar gebruik je het?</dt>
+                <dd>
+                  Op meerdaagse festivals, grote stadsfeesten, sportevents en grootschalige
+                  openluchtevenementen waar operationele precisie en risicobeheersing cruciaal zijn.
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div
+            class="audience-panel"
+            role="tabpanel"
+            id="panel-gemeente"
+            aria-labelledby="tab-gemeente"
+            data-audience-panel="gemeente"
+            hidden
+          >
+            <p class="audience-panel__kicker">Vergunning · handhaving · veiligheid</p>
+            <h3>Voor gemeentes &amp; vergunningverleners</h3>
+            <dl class="audience-dl">
+              <div>
+                <dt>Voor wie?</dt>
+                <dd>
+                  Gemeenteambtenaren, vergunningverleners, handhavers en veiligheidsexperts die
+                  verantwoordelijk zijn voor de beoordeling van evenementenveiligheid en tijdens
+                  evenementen een vinger aan de pols willen houden.
+                </dd>
+              </div>
+              <div>
+                <dt>Wat is EWAP?</dt>
+                <dd>
+                  Het centrale portaal waarin je als gemeente direct meekijkt met ingediende
+                  beheersplannen, de status van tijdelijke bouwwerken en de actuele wind- en
+                  weersmonitoring tijdens het evenement. Zo toets je snel, transparant en op basis
+                  van harde data of alles binnen de veiligheidsnormen verloopt.
+                </dd>
+              </div>
+              <div>
+                <dt>Hoe werkt het?</dt>
+                <dd>
+                  <ol>
+                    <li>
+                      <strong>Inzien &amp; toetsen</strong> — Ontvang en beoordeel digitale
+                      beheersplannen en bouwwerken direct vanuit het systeem.
+                    </li>
+                    <li>
+                      <strong>Live meekijken</strong> — Monitor tijdens het evenement in real-time
+                      de actuele status van de bouwwerken en of er grenswaarden worden genaderd.
+                    </li>
+                    <li>
+                      <strong>Transparantie</strong> — Communiceer moeiteloos met organisatoren op
+                      basis van dezelfde actuele data, van voorbereiding tot afbouw.
+                    </li>
+                  </ol>
+                </dd>
+              </div>
+              <div>
+                <dt>Waar gebruik je het?</dt>
+                <dd>
+                  Van achter je bureau op het stadhuis tot onderweg of in de meldkamer tijdens
+                  operationele evenementendagen.
+                </dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </section>
 
       <section class="section cta" aria-labelledby="cta-title">
         <div class="wrap">
-          <h2 id="cta-title">Klaar voor het volgende festival?</h2>
-          <p>Maak een account, kies de organisatie en start met live weer.</p>
+          <h2 id="cta-title">Klaar voor jouw volgende evenement?</h2>
+          <p>Van dorpsplein tot festivalterrein — maak een account en start met live weer.</p>
           <div class="hero__actions">
             <a class="btn btn--signal" href="https://app.ewapevents.nl/signup">Account aanmaken</a>
             <a class="btn btn--ghost" href="https://app.ewapevents.nl/login">Inloggen</a>
@@ -441,6 +628,6 @@
       </div>
     </footer>
 
-    <script src="/assets/js/main.js?v=5" defer></script>
+    <script src="/assets/js/main.js?v=6" defer></script>
   </body>
 </html>

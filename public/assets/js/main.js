@@ -512,6 +512,43 @@
     });
   }
 
+  function initAudience() {
+    const tabs = Array.from(document.querySelectorAll("[data-audience-tab]"));
+    const panels = Array.from(document.querySelectorAll("[data-audience-panel]"));
+    if (!tabs.length || !panels.length) return;
+
+    function activate(id) {
+      for (const tab of tabs) {
+        const selected = tab.dataset.audienceTab === id;
+        tab.setAttribute("aria-selected", selected ? "true" : "false");
+        tab.tabIndex = selected ? 0 : -1;
+      }
+      for (const panel of panels) {
+        const active = panel.dataset.audiencePanel === id;
+        panel.hidden = !active;
+        panel.classList.toggle("is-active", active);
+      }
+    }
+
+    for (const tab of tabs) {
+      tab.addEventListener("click", () => {
+        activate(tab.dataset.audienceTab || "lokaal");
+      });
+      tab.addEventListener("keydown", (event) => {
+        const index = tabs.indexOf(tab);
+        if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+          event.preventDefault();
+          const dir = event.key === "ArrowRight" ? 1 : -1;
+          const next = tabs[(index + dir + tabs.length) % tabs.length];
+          next.focus();
+          activate(next.dataset.audienceTab || "lokaal");
+        }
+      });
+    }
+
+    activate("lokaal");
+  }
+
   function initYear() {
     const year = document.getElementById("year");
     if (year) year.textContent = String(new Date().getFullYear());
@@ -521,4 +558,5 @@
   initNav();
   initLevels();
   initHeroWeather();
+  initAudience();
 })();

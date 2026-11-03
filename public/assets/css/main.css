@@ -772,61 +772,113 @@ a {
   color: var(--slate);
 }
 
-.audience {
+.audience-switch {
   display: grid;
-  gap: 1.25rem;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
-@media (min-width: 800px) {
-  .audience {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 3rem;
-    align-items: start;
+@media (min-width: 820px) {
+  .audience-switch {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.audience ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 0.85rem;
-}
-
-.audience li {
-  display: grid;
-  grid-template-columns: 1.1rem 1fr;
-  gap: 0.75rem;
-  align-items: start;
-}
-
-.audience li::before {
-  content: "";
-  width: 0.55rem;
-  height: 0.55rem;
-  margin-top: 0.55rem;
-  border-radius: 50%;
-  background: var(--signal);
-}
-
-.facts {
-  margin: 0;
-  padding: 1.25rem 0 0;
-  border-top: 1px solid var(--fog);
-  display: grid;
-  gap: 1rem;
-}
-
-.facts div strong {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
-}
-
-.facts div span {
-  color: var(--slate);
+.audience-tab {
+  min-height: 3.1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--fog);
+  background: var(--paper);
+  color: var(--navy);
+  font-family: var(--font-body);
   font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.audience-tab:hover {
+  border-color: color-mix(in srgb, var(--navy) 25%, transparent);
+}
+
+.audience-tab[aria-selected="true"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.audience-panel {
+  max-width: 48rem;
+}
+
+.audience-panel[hidden] {
+  display: none;
+}
+
+.audience-panel.is-active {
+  animation: rise-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.audience-panel__kicker {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--signal-text);
+}
+
+.audience-panel h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.audience-dl {
+  margin: 1.75rem 0 0;
+  display: grid;
+  gap: 1.35rem;
+}
+
+.audience-dl > div {
+  padding-top: 1rem;
+  border-top: 1px solid var(--fog);
+}
+
+.audience-dl dt {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--signal-text);
+}
+
+.audience-dl dd {
+  margin: 0;
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+.audience-dl ol {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.audience-dl li {
+  color: var(--slate);
+}
+
+.audience-dl li strong {
+  color: var(--navy);
 }
 
 /* —— CTA / footer —— */

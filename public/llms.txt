@@ -36,10 +36,18 @@ ECC wind levels are five fixed colours (Frank protocol): 0 green, 1 yellow, 2 or
 
 ## Who it is for
 
-- Event safety / ECC command-post teams
-- Production and site crews watching temporary structures
-- Organisations that must follow weather protocols for event structures
-- Not a consumer visitor app
+Three primary audiences:
+
+1. Small local events & market squares — organisers of braderieën, Koningsdag,
+   neighbourhood fairs who need a simple beheersplan, municipal submission and
+   phone alarms when wind/weather limits are exceeded.
+2. Professional / large organisers — event producers with multi-structure sites,
+   zone groups, layered thresholds and targeted escalation notifications.
+3. Municipalities & permit authorities — officers who review digital beheersplannen,
+   monitor live structure/weather status during events, and share one data source
+   with organisers.
+
+Not a consumer visitor app.
 
 ## Key URLs
 
