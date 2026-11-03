@@ -37,8 +37,8 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/brand/svg/ewap-icon-primary.svg" />
-    <link rel="stylesheet" href="/assets/css/fonts.css?v=13" />
-    <link rel="stylesheet" href="/assets/css/main.css?v=13" />
+    <link rel="stylesheet" href="/assets/css/fonts.css?v=14" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=14" />
 
     <script type="application/ld+json">
       {
@@ -294,7 +294,19 @@
                 data-level="0"
                 aria-live="polite"
               >
-                <span class="level-badge" data-level-badge>0</span>
+                <div class="level-stage__top">
+                  <span class="level-badge" data-level-badge>0</span>
+                  <div class="level-wind" aria-label="Actuele piekwind">
+                    <p class="level-wind__kmh">
+                      <span data-wind-kmh>28</span>
+                      <abbr title="kilometer per uur">km/h</abbr>
+                    </p>
+                    <p class="level-wind__ms">
+                      <span data-wind-ms>7,8</span>
+                      <abbr title="meter per seconde">m/s</abbr>
+                    </p>
+                  </div>
+                </div>
                 <p class="level-stage__name" data-level-name>Groen</p>
                 <p class="level-stage__band" data-level-band>Normaal · piek tot ±40 km/h</p>
                 <p class="level-stage__measure" data-level-measure>
@@ -315,8 +327,7 @@
               <div class="control-block control-block--row">
                 <div>
                   <label for="wind-slider">
-                    Piekwind op het evenement:
-                    <span data-wind-value>28 km/h</span>
+                    Piekwind op het evenement bijstellen
                   </label>
                   <input
                     id="wind-slider"
@@ -672,6 +683,6 @@
       </div>
     </footer>
 
-    <script src="/assets/js/main.js?v=11" defer></script>
+    <script src="/assets/js/main.js?v=14" defer></script>
   </body>
 </html>

@@ -624,6 +624,13 @@ a {
   }
 }
 
+.level-stage__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .level-badge {
   display: inline-flex;
   align-items: center;
@@ -639,6 +646,40 @@ a {
 
 .level-badge.is-pulse {
   transform: scale(1.04);
+}
+
+.level-wind {
+  text-align: right;
+}
+
+.level-wind__kmh {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.level-wind__kmh abbr,
+.level-wind__ms abbr {
+  margin-left: 0.35rem;
+  font-size: 0.45em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.level-wind__ms {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--white) 82%, transparent);
+  font-variant-numeric: tabular-nums;
 }
 
 .level-stage__name {

@@ -91,13 +91,18 @@
     const measureEl = document.querySelector("[data-level-measure]");
     const meter = document.querySelector("[data-level-meter]");
     const slider = document.querySelector("[data-wind-slider]");
-    const sliderValue = document.querySelector("[data-wind-value]");
+    const windKmhEl = document.querySelector("[data-wind-kmh]");
+    const windMsEl = document.querySelector("[data-wind-ms]");
     const tabs = Array.from(document.querySelectorAll("[data-level-tab]"));
     const bouwselList = document.querySelector("[data-bouwsel-list]");
     const playPause = document.querySelector("[data-level-auto]");
 
     if (!stage || !slider || !badge || !nameEl || !bandEl || !measureEl || !meter) {
       return;
+    }
+
+    function formatMs(kmh) {
+      return (kmh / 3.6).toFixed(1).replace(".", ",");
     }
 
     let currentGust = Number(slider.value) || 28;
@@ -143,7 +148,8 @@
       autoLevelIndex = level.level;
 
       slider.value = String(currentGust);
-      if (sliderValue) sliderValue.textContent = `${currentGust} km/h`;
+      if (windKmhEl) windKmhEl.textContent = String(currentGust);
+      if (windMsEl) windMsEl.textContent = formatMs(currentGust);
 
       stage.dataset.level = String(level.level);
       badge.textContent = String(level.level);
