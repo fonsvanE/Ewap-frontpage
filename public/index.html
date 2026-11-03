@@ -37,8 +37,8 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/brand/svg/ewap-icon-primary.svg" />
-    <link rel="stylesheet" href="/assets/css/fonts.css?v=6" />
-    <link rel="stylesheet" href="/assets/css/main.css?v=6" />
+    <link rel="stylesheet" href="/assets/css/fonts.css?v=10" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=10" />
 
     <script type="application/ld+json">
       {
@@ -246,44 +246,46 @@
       <section id="levels" class="section section--white" aria-labelledby="levels-title">
         <div class="wrap">
           <div class="section__head">
-            <p class="section__eyebrow">ECC-protocol · levels 0–4</p>
-            <h2 id="levels-title">Windlevels inclusief paars</h2>
+            <p class="section__eyebrow">ECC-protocol · twee lagen</p>
+            <h2 id="levels-title">Evenement-level én bouwsel-level</h2>
             <p class="section__lead">
-              Vijf vaste kleuren uit het algemeen windprotocol: groen, geel, oranje, rood en paars.
-              De demo wisselt automatisch — of sleep zelf de piekwind.
+              Het <strong>evenement-level</strong> is de kleur voor het hele terrein (commandopost /
+              ECC). Elk <strong>bouwsel</strong> heeft daarnaast een eigen level — een springkussen
+              kan al oranje zijn terwijl het evenement nog op geel staat.
             </p>
           </div>
 
           <div class="levels">
-            <div
-              class="level-stage"
-              data-level-stage
-              data-level="0"
-              aria-live="polite"
-            >
-              <span class="level-badge" data-level-badge>0</span>
-              <p class="level-stage__name" data-level-name>Groen</p>
-              <p class="level-stage__band" data-level-band>Normaal · piek tot ±40 km/h</p>
-              <p class="level-stage__measure" data-level-measure>
-                Alles rustig. Blijf meten en houd de commandopost op de hoogte.
-              </p>
+            <div class="level-event">
+              <p class="level-layer-label">Evenement-level · hele event</p>
               <div
-                class="level-stage__meter"
-                role="meter"
-                aria-label="Piekwind in bereik van de demo"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-valuenow="8"
+                class="level-stage"
+                data-level-stage
+                data-level="0"
+                aria-live="polite"
               >
-                <span data-level-meter></span>
+                <span class="level-badge" data-level-badge>0</span>
+                <p class="level-stage__name" data-level-name>Groen</p>
+                <p class="level-stage__band" data-level-band>Normaal · piek tot ±40 km/h</p>
+                <p class="level-stage__measure" data-level-measure>
+                  Alles rustig. Blijf meten en houd de commandopost op de hoogte.
+                </p>
+                <div
+                  class="level-stage__meter"
+                  role="meter"
+                  aria-label="Piekwind voor evenement-level"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="8"
+                >
+                  <span data-level-meter></span>
+                </div>
               </div>
-            </div>
 
-            <div class="level-controls">
               <div class="control-block control-block--row">
                 <div>
                   <label for="wind-slider">
-                    Piekwind:
+                    Piekwind op het evenement:
                     <span data-wind-value>28 km/h</span>
                   </label>
                   <input
@@ -307,12 +309,12 @@
                 </button>
               </div>
               <p class="control-block__hint">
-                Piekwind én gemiddelde tellen. Level 4 (paars) is het extreme niveau boven rood.
-                Omlaag gaat trager dan omhoog.
+                Dit is het niveau voor het hele evenement (0 groen → 4 paars). Bouwsels hiernaast
+                kunnen sneller of later meegaan, afhankelijk van hun eigen grenswaarden.
               </p>
 
               <div class="control-block">
-                <label id="level-tabs-label">Spring naar niveau</label>
+                <label id="level-tabs-label">Evenement-level kiezen</label>
                 <div class="level-tabs" role="group" aria-labelledby="level-tabs-label">
                   <button type="button" class="level-tab" data-level-tab="0" aria-pressed="true">
                     0
@@ -331,11 +333,23 @@
                   </button>
                 </div>
               </div>
+            </div>
 
-              <div class="control-block">
-                <label>Voorbeeld bouwsels op dit event</label>
-                <ul class="bouwsel-list" data-bouwsel-list></ul>
+            <div class="level-bouwsels">
+              <p class="level-layer-label">Bouwsel-levels · per constructie</p>
+              <p class="level-bouwsels__lead">
+                Zelfde wind, andere limieten. Springkussen reageert eerder (al oranje bij
+                evenement-level 1). Ingangspoort volgt de standaardladder geel → oranje → rood →
+                paars.
+              </p>
+              <div class="bouwsel-legend" aria-hidden="true">
+                <span><i style="--dot:#00b050"></i>Groen</span>
+                <span><i style="--dot:#ffff00"></i>Geel</span>
+                <span><i style="--dot:#ffc000"></i>Oranje</span>
+                <span><i style="--dot:#ff0000"></i>Rood</span>
+                <span><i style="--dot:#7030a0"></i>Paars</span>
               </div>
+              <ul class="bouwsel-list" data-bouwsel-list></ul>
             </div>
           </div>
         </div>
@@ -628,6 +642,6 @@
       </div>
     </footer>
 
-    <script src="/assets/js/main.js?v=9" defer></script>
+    <script src="/assets/js/main.js?v=10" defer></script>
   </body>
 </html>

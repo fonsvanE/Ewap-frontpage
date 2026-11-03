@@ -111,15 +111,26 @@
       bouwselList.innerHTML = "";
       for (const item of BOUWSELS) {
         const local = bouwselLevel(item, siteLevel);
+        const ahead = local.level > siteLevel;
+        const note = ahead ? "strenger dan event" : local.level < siteLevel ? "lager dan event" : "gelijk aan event";
         const li = document.createElement("li");
         li.innerHTML = `
           <span class="bouwsel-dot" style="--dot:${local.bg}" aria-hidden="true"></span>
-          <span class="bouwsel-name">${item.name}</span>
-          <span class="bouwsel-pct">${local.name} · L${local.level}</span>
+          <span class="bouwsel-meta">
+            <span class="bouwsel-name">${item.name}</span>
+            <span class="bouwsel-note">${note}</span>
+          </span>
+          <span class="bouwsel-pct">
+            <span class="bouwsel-level-pill" style="background:${local.bg};color:${local.fg}">L${local.level}</span>
+            ${local.name}
+          </span>
         `;
         bouwselList.appendChild(li);
       }
-      bouwselList.setAttribute("aria-label", `Voorbeeld bouwsels bij site-level ${siteLevel}`);
+      bouwselList.setAttribute(
+        "aria-label",
+        `Bouwsel-levels bij evenement-level ${siteLevel}`,
+      );
     }
 
     function setGust(gustKmh, { pulse = true } = {}) {

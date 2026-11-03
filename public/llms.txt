@@ -26,7 +26,9 @@ ECC wind levels are five fixed colours (Frank protocol): 0 green, 1 yellow, 2 or
 - It is broader than wind: lightning, rain, sun/heat and other weather risks are in scope.
 - ECC wind levels 0–4 use fixed colours: green, yellow, orange, red, purple.
 - Purple (level 4, #7030A0) is the extreme level above red.
-- Both 10-minute mean wind and 3-second gust are evaluated for the site windlevel.
+- Two layers: an event-wide level (ECC/command post) and per-bouwsel levels.
+  A sensitive structure (e.g. springkussen) can already be orange while the event is still yellow.
+- Both 10-minute mean wind and 3-second gust are evaluated for the event windlevel.
 - Forecast supports planning; level/action decisions rely on live measurements.
 - Downgrades are slower than upgrades (hysteresis / dwell time).
 - Missing data escalates toward monitoring — never silently downgrades.

@@ -467,15 +467,60 @@ a {
 /* —— Interactive levels —— */
 .levels {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 @media (min-width: 920px) {
   .levels {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: 2rem;
-    align-items: stretch;
+    gap: 2.25rem;
+    align-items: start;
   }
+}
+
+.level-layer-label {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--signal-text);
+}
+
+.level-event,
+.level-bouwsels {
+  min-width: 0;
+}
+
+.level-bouwsels__lead {
+  margin: 0 0 1rem;
+  color: var(--slate);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.bouwsel-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  color: var(--slate);
+}
+
+.bouwsel-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bouwsel-legend i {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--dot);
+  box-shadow: inset 0 0 0 1px rgb(11 27 52 / 0.2);
 }
 
 .level-stage {
@@ -704,7 +749,7 @@ a {
   grid-template-columns: auto 1fr auto;
   gap: 0.75rem;
   align-items: center;
-  padding: 0.7rem 0;
+  padding: 0.85rem 0;
   border-bottom: 1px solid var(--fog);
 }
 
@@ -719,14 +764,42 @@ a {
   background: var(--dot, var(--slate));
 }
 
+.bouwsel-meta {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
 .bouwsel-name {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.bouwsel-note {
+  font-size: 0.8rem;
+  color: var(--slate);
 }
 
 .bouwsel-pct {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.bouwsel-level-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.85rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.35rem;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--slate);
+  font-size: 0.78rem;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgb(11 27 52 / 0.18);
 }
 
 /* —— How / audience —— */
