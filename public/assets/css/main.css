@@ -744,11 +744,6 @@ a {
   gap: 0.65rem;
 }
 
-.bouwsel-list {
-  display: grid;
-  gap: 0.65rem;
-}
-
 .bouwsel-card {
   display: grid;
   grid-template-columns: auto 1fr auto;
