@@ -7,7 +7,7 @@
       band: "Normaal · piek tot ±40 km/h",
       gust: 28,
       measure:
-        "Alles rustig. Blijf meten en houd de commandopost op de hoogte. Geen extra maatregelen nodig.",
+        "Alles rustig. Blijf meten en houd ECC / CP op de hoogte. Geen extra maatregelen nodig.",
       bg: "#00B050",
       fg: "#FFFFFF",
     },
