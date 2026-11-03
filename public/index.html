@@ -37,8 +37,8 @@
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/brand/svg/ewap-icon-primary.svg" />
-    <link rel="stylesheet" href="/assets/css/fonts.css?v=15" />
-    <link rel="stylesheet" href="/assets/css/main.css?v=15" />
+    <link rel="stylesheet" href="/assets/css/fonts.css?v=16" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=16" />
 
     <script type="application/ld+json">
       {
@@ -220,44 +220,55 @@
             <h2 id="maya-title">Maya, de organisator</h2>
             <p class="maya__lead">
               Maya organiseert lokale evenementen: braderieën, Koningsdag, dorpsfeesten. Met EWAP
-              bewaakt ze wind, bliksem, regen en hitte — en krijgt ze alarmen als grenzen naderen.
+              bewaakt ze het weer — en krijgt ze alarmen als grenzen naderen.
             </p>
-            <figure class="maya__media">
-              <video
-                class="maya__video"
-                controls
-                playsinline
-                preload="metadata"
-                poster="/media/maya-event-organizer.jpg"
-                width="1280"
-                height="720"
-              >
-                <source src="/media/maya-event-organizer.mp4" type="video/mp4" />
-                Je browser ondersteunt geen video. Bekijk Maya via een recente browser.
-              </video>
-            </figure>
           </div>
 
-          <div class="maya__weather" aria-labelledby="weer-title">
-            <h3 id="weer-title">Weersomstandigheden die Maya bewaakt</h3>
-            <ul class="hazards hazards--on-dark" aria-label="Weerrisico's">
-              <li>
-                <strong>Wind</strong>
-                <span>Piekwind en gemiddelde · levels 0–4 inclusief paars.</span>
-              </li>
-              <li>
-                <strong>Bliksem</strong>
-                <span>Strikes op de kaart en afstand tot het terrein.</span>
-              </li>
-              <li>
-                <strong>Regen</strong>
-                <span>Neerslag in beeld voor planning en terreinbesluiten.</span>
-              </li>
-              <li>
-                <strong>Zon &amp; hitte</strong>
-                <span>Belasting door fel zonlicht en temperatuur meenemen.</span>
-              </li>
-            </ul>
+          <div class="maya__scene" data-maya-scene data-weather="wind">
+            <div class="maya__scene-visual">
+              <canvas class="maya__weather-canvas" data-maya-canvas aria-hidden="true"></canvas>
+              <div class="maya__weather-veil" aria-hidden="true"></div>
+              <figure class="maya__media">
+                <video
+                  class="maya__video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster="/media/maya-event-organizer.jpg"
+                  width="1280"
+                  height="720"
+                >
+                  <source src="/media/maya-event-organizer.mp4" type="video/mp4" />
+                  Je browser ondersteunt geen video. Bekijk Maya via een recente browser.
+                </video>
+              </figure>
+            </div>
+
+            <div class="maya__weather" aria-labelledby="weer-title">
+              <h3 id="weer-title">In het weer</h3>
+              <ul class="hazards hazards--stack hazards--on-dark" aria-label="Weerrisico's">
+                <li>
+                  <strong>Wind</strong>
+                  <span>Piekwind en gemiddelde · levels 0–4 inclusief paars.</span>
+                </li>
+                <li>
+                  <strong>Regen</strong>
+                  <span>Neerslag in beeld voor planning en terreinbesluiten.</span>
+                </li>
+                <li>
+                  <strong>Bliksem</strong>
+                  <span>Strikes op de kaart en afstand tot het terrein.</span>
+                </li>
+                <li>
+                  <strong>Zon</strong>
+                  <span>Fel zonlicht en UV-belasting meenemen in maatregelen.</span>
+                </li>
+                <li>
+                  <strong>Hitte</strong>
+                  <span>Temperatuur en warmtebelasting voor team en publiek.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -672,6 +683,6 @@
       </div>
     </footer>
 
-    <script src="/assets/js/main.js?v=14" defer></script>
+    <script src="/assets/js/main.js?v=16" defer></script>
   </body>
 </html>

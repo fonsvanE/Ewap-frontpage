@@ -251,24 +251,23 @@
     });
   }
 
-  function initHeroWeather() {
-    const canvas = document.querySelector("[data-hero-canvas]");
-    const hero = canvas?.closest(".hero");
-    const label = document.querySelector("[data-weather-label]");
-    if (!(canvas instanceof HTMLCanvasElement) || !hero) return;
+  function initWeatherCanvas(canvas, { sceneEl = null, labelEl = null, modes = null } = {}) {
+    if (!(canvas instanceof HTMLCanvasElement)) return;
+    const scene = sceneEl || canvas.closest("[data-weather]") || canvas.parentElement;
+    if (!scene) return;
 
-    const modes = [
+    const weatherModes = modes || [
       { id: "wind", label: "Wind" },
-      { id: "lightning", label: "Bliksem" },
       { id: "rain", label: "Regen" },
+      { id: "lightning", label: "Bliksem" },
       { id: "sun", label: "Zon & hitte" },
     ];
     const MODE_MS = 7000;
     const FADE_MS = 900;
 
     if (reduceMotion) {
-      hero.dataset.weather = "wind";
-      if (label) label.textContent = modes[0].label;
+      scene.dataset.weather = "wind";
+      if (labelEl) labelEl.textContent = weatherModes[0].label;
       return;
     }
 
@@ -285,14 +284,14 @@
     let flash = 0;
 
     function currentMode() {
-      return modes[modeIndex].id;
+      return weatherModes[modeIndex].id;
     }
 
     function setMode(index, now) {
-      modeIndex = index % modes.length;
+      modeIndex = index % weatherModes.length;
       modeStarted = now;
-      hero.dataset.weather = modes[modeIndex].id;
-      if (label) label.textContent = modes[modeIndex].label;
+      scene.dataset.weather = weatherModes[modeIndex].id;
+      if (labelEl) labelEl.textContent = weatherModes[modeIndex].label;
       rebuildParticles();
       bolts = [];
       flash = 0;
@@ -512,6 +511,8 @@
         setMode(modeIndex + 1, now);
       }
 
+      // keep mode length available for wrap logic above
+
       const mode = currentMode();
       // Crossfade at edges via globalAlpha on scene
       let alpha = 1;
@@ -586,6 +587,18 @@
   initYear();
   initNav();
   initLevels();
-  initHeroWeather();
+  initWeatherCanvas(document.querySelector("[data-hero-canvas]"), {
+    sceneEl: document.querySelector(".hero"),
+    labelEl: document.querySelector("[data-weather-label]"),
+  });
+  initWeatherCanvas(document.querySelector("[data-maya-canvas]"), {
+    sceneEl: document.querySelector("[data-maya-scene]"),
+    modes: [
+      { id: "wind", label: "Wind" },
+      { id: "rain", label: "Regen" },
+      { id: "lightning", label: "Bliksem" },
+      { id: "sun", label: "Zon" },
+    ],
+  });
   initAudience();
 })();

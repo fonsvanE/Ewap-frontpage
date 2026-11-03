@@ -393,15 +393,7 @@ a {
 
 .maya {
   display: grid;
-  gap: 2.75rem;
-}
-
-@media (min-width: 960px) {
-  .maya {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    gap: 2.5rem;
-    align-items: start;
-  }
+  gap: 1.25rem;
 }
 
 .maya__intro h2 {
@@ -410,15 +402,79 @@ a {
 }
 
 .maya__lead {
-  margin: 0.75rem 0 1rem;
-  max-width: 38rem;
+  margin: 0.65rem 0 0;
+  max-width: 40rem;
   font-size: 1.08rem;
   line-height: 1.55;
   color: color-mix(in srgb, var(--white) 78%, transparent);
 }
 
+.maya__scene {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 0.35rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--white) 12%, transparent);
+  background: color-mix(in srgb, var(--navy) 55%, var(--midnight));
+}
+
+@media (min-width: 900px) {
+  .maya__scene {
+    grid-template-columns: minmax(0, 1.25fr) minmax(14rem, 0.7fr);
+    gap: 1.25rem;
+    align-items: stretch;
+    padding: 1.15rem;
+  }
+}
+
+.maya__scene-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 14rem;
+  background: var(--midnight);
+}
+
+.maya__weather-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.maya__weather-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background 700ms ease;
+  background:
+    radial-gradient(ellipse 70% 55% at 78% 18%, color-mix(in srgb, var(--signal) 22%, transparent), transparent 58%),
+    linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--midnight) 55%, transparent) 100%);
+}
+
+.maya__scene[data-weather="lightning"] .maya__weather-veil {
+  background:
+    radial-gradient(ellipse 50% 40% at 60% 10%, rgba(180, 200, 255, 0.22), transparent 55%),
+    linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--midnight) 60%, transparent) 100%);
+}
+
+.maya__scene[data-weather="rain"] .maya__weather-veil {
+  background:
+    radial-gradient(ellipse 60% 45% at 30% 15%, rgba(90, 140, 200, 0.24), transparent 55%),
+    linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--midnight) 62%, transparent) 100%);
+}
+
+.maya__scene[data-weather="sun"] .maya__weather-veil {
+  background:
+    radial-gradient(ellipse 55% 50% at 78% 20%, color-mix(in srgb, var(--signal) 40%, transparent), transparent 60%),
+    linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--midnight) 55%, transparent) 100%);
+}
+
 .maya__media {
+  position: relative;
+  z-index: 1;
   margin: 0;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
 }
 
 .maya__video {
@@ -426,16 +482,29 @@ a {
   width: 100%;
   height: auto;
   background: #000;
-  border: 1px solid color-mix(in srgb, var(--white) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 14%, transparent);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.35);
+}
+
+.maya__weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.25rem 0.35rem 0.5rem;
 }
 
 .maya__weather h3 {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1rem;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--white);
+}
+
+.hazards--stack {
+  grid-template-columns: 1fr !important;
+  gap: 0.85rem;
 }
 
 .hazards--on-dark li {
