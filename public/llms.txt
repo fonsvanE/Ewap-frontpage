@@ -51,9 +51,15 @@ Three primary audiences:
 
 Not a consumer visitor app.
 
+## Characters / story
+
+- Maya is the event-organizer character used on the marketing site (local events,
+  beheersplan, municipal share, phone alarms). Video: https://ewapevents.nl/media/maya-event-organizer.mp4
+
 ## Key URLs
 
 - Marketing homepage: https://ewapevents.nl/
+- Maya section: https://ewapevents.nl/#maya
 - Application: https://app.ewapevents.nl/
 - Signup: https://app.ewapevents.nl/signup
 - Login: https://app.ewapevents.nl/login
