@@ -511,8 +511,6 @@
         setMode(modeIndex + 1, now);
       }
 
-      // keep mode length available for wrap logic above
-
       const mode = currentMode();
       // Crossfade at edges via globalAlpha on scene
       let alpha = 1;
