@@ -53,11 +53,15 @@
     },
   ];
 
+  /**
+   * Per bouwsel: welk ECC-level (0–4) bij site-level 0–4.
+   * Springkussen escaleert sneller (L1 al oranje). Ingangspoort volgt de standaardkleuren.
+   */
   const BOUWSELS = [
-    { name: "Hoofdpodium", offset: 8 },
-    { name: "VIP-tent", offset: -14 },
-    { name: "Springkussen", offset: 3 },
-    { name: "Ingangspoort", offset: -6 },
+    { name: "Hoofdpodium", map: [0, 1, 2, 3, 4] },
+    { name: "VIP-tent", map: [0, 1, 2, 3, 4] },
+    { name: "Springkussen", map: [0, 2, 3, 4, 4] },
+    { name: "Ingangspoort", map: [0, 1, 2, 3, 4] },
   ];
 
   const GUST_BOUNDS = [40, 72, 80, 90];
@@ -72,6 +76,11 @@
       if (value <= GUST_BOUNDS[i]) return LEVELS[i];
     }
     return LEVELS[4];
+  }
+
+  function bouwselLevel(item, siteLevel) {
+    const mapped = item.map[Math.min(4, Math.max(0, siteLevel))] ?? siteLevel;
+    return LEVELS[mapped] || LEVELS[0];
   }
 
   function initLevels() {
@@ -97,21 +106,20 @@
     let autoOn = !reduceMotion;
     let autoLevelIndex = 0;
 
-    function renderBouwsels(baseGust, level) {
+    function renderBouwsels(siteLevel) {
       if (!bouwselList) return;
       bouwselList.innerHTML = "";
       for (const item of BOUWSELS) {
-        const gust = Math.max(0, Math.min(120, baseGust + item.offset));
-        const local = levelFromGust(gust);
+        const local = bouwselLevel(item, siteLevel);
         const li = document.createElement("li");
         li.innerHTML = `
           <span class="bouwsel-dot" style="--dot:${local.bg}" aria-hidden="true"></span>
           <span class="bouwsel-name">${item.name}</span>
-          <span class="bouwsel-pct">${gust} km/h · L${local.level}</span>
+          <span class="bouwsel-pct">${local.name} · L${local.level}</span>
         `;
         bouwselList.appendChild(li);
       }
-      bouwselList.setAttribute("aria-label", `Voorbeeld bouwsels bij level ${level.level}`);
+      bouwselList.setAttribute("aria-label", `Voorbeeld bouwsels bij site-level ${siteLevel}`);
     }
 
     function setGust(gustKmh, { pulse = true } = {}) {
@@ -147,7 +155,7 @@
         tab.setAttribute("aria-pressed", active ? "true" : "false");
       }
 
-      renderBouwsels(currentGust, level);
+      renderBouwsels(level.level);
       if (playPause) {
         playPause.setAttribute("aria-pressed", autoOn ? "true" : "false");
         playPause.textContent = autoOn ? "Animatie aan" : "Animatie uit";
