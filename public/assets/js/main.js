@@ -54,7 +54,7 @@
   ];
 
   const BOUWSELS = [
-    { name: "Mainstage dak", offset: 8 },
+    { name: "Hoofdpodium", offset: 8 },
     { name: "VIP-tent", offset: -14 },
     { name: "Cateringframe", offset: 3 },
     { name: "Ingangspoort", offset: -6 },
