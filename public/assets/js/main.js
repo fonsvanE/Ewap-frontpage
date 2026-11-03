@@ -251,6 +251,66 @@
     });
   }
 
+  function splitHeroTitle() {
+    const title = document.getElementById("hero-title");
+    if (!(title instanceof HTMLElement) || title.dataset.split === "1") return;
+    const text = title.textContent?.replace(/\s+/g, " ").trim() || "";
+    if (!text) return;
+    title.dataset.split = "1";
+    title.setAttribute("aria-label", text);
+    title.textContent = "";
+    for (let i = 0; i < text.length; i += 1) {
+      const ch = text[i];
+      const span = document.createElement("span");
+      span.className = "hero__char";
+      span.setAttribute("aria-hidden", "true");
+      span.style.setProperty("--i", String(i));
+      span.textContent = ch === " " ? "\u00A0" : ch;
+      title.appendChild(span);
+    }
+  }
+
+  function heroLetterNodes() {
+    return Array.from(document.querySelectorAll("#hero-title .hero__char")).filter(
+      (el) => el.textContent && el.textContent !== "\u00A0",
+    );
+  }
+
+  function clearHeroLetterMarks() {
+    for (const el of document.querySelectorAll("#hero-title .hero__char")) {
+      el.classList.remove("is-struck", "is-burning");
+    }
+  }
+
+  function pickRandomLetters(nodes, count) {
+    const pool = [...nodes];
+    const picked = [];
+    const n = Math.min(count, pool.length);
+    for (let i = 0; i < n; i += 1) {
+      const index = Math.floor(Math.random() * pool.length);
+      picked.push(pool.splice(index, 1)[0]);
+    }
+    return picked;
+  }
+
+  function markHeroWeatherLetters(mode) {
+    clearHeroLetterMarks();
+    const letters = heroLetterNodes();
+    if (mode === "lightning") {
+      const count = 3 + Math.floor(Math.random() * 3); // 3–5
+      for (const el of pickRandomLetters(letters, count)) {
+        el.classList.add("is-struck");
+      }
+      return;
+    }
+    if (mode === "sun") {
+      const count = 1 + Math.floor(Math.random() * 2); // 1–2
+      for (const el of pickRandomLetters(letters, count)) {
+        el.classList.add("is-burning");
+      }
+    }
+  }
+
   function initWeatherCanvas(canvas, { sceneEl = null, labelEl = null, modes = null } = {}) {
     if (!(canvas instanceof HTMLCanvasElement)) return;
     const scene = sceneEl || canvas.closest("[data-weather]") || canvas.parentElement;
@@ -262,7 +322,12 @@
       { id: "lightning", label: "Bliksem" },
       { id: "sun", label: "Zon & hitte" },
     ];
-    const MODE_MS = 7000;
+    const MODE_MS = {
+      wind: 10000,
+      rain: 7000,
+      lightning: 7000,
+      sun: 9000,
+    };
     const FADE_MS = 900;
 
     if (reduceMotion) {
@@ -270,6 +335,8 @@
       if (labelEl) labelEl.textContent = weatherModes[0].label;
       return;
     }
+
+    splitHeroTitle();
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -282,62 +349,91 @@
     let particles = [];
     let bolts = [];
     let flash = 0;
+    let gust = 0;
+    let letterMarkTimer = 0;
 
     function currentMode() {
       return weatherModes[modeIndex].id;
     }
 
+    function modeDuration() {
+      return MODE_MS[currentMode()] || 7000;
+    }
+
+    function stopLetterMarks() {
+      window.clearInterval(letterMarkTimer);
+      letterMarkTimer = 0;
+      clearHeroLetterMarks();
+    }
+
+    function startLetterMarks(mode) {
+      stopLetterMarks();
+      if (mode !== "lightning" && mode !== "sun") return;
+      markHeroWeatherLetters(mode);
+      // Fresh targets each strike/burn cycle so it doesn't feel static
+      const period = mode === "lightning" ? 3200 : 4200;
+      letterMarkTimer = window.setInterval(() => {
+        markHeroWeatherLetters(mode);
+      }, period);
+    }
+
     function setMode(index, now) {
       modeIndex = index % weatherModes.length;
       modeStarted = now;
-      scene.dataset.weather = weatherModes[modeIndex].id;
+      const mode = weatherModes[modeIndex].id;
+      scene.dataset.weather = mode;
       if (labelEl) labelEl.textContent = weatherModes[modeIndex].label;
       rebuildParticles();
       bolts = [];
       flash = 0;
+      gust = 0;
+      startLetterMarks(mode);
     }
 
     function rebuildParticles() {
       particles = [];
       const mode = currentMode();
       if (mode === "wind") {
-        const count = Math.floor(width / 26);
+        const count = Math.floor(width / 14);
         for (let i = 0; i < count; i += 1) {
           particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            len: 40 + Math.random() * 90,
-            speed: 0.4 + Math.random() * 1.2,
-            alpha: 0.1 + Math.random() * 0.2,
-            amber: Math.random() > 0.8,
+            len: 55 + Math.random() * 140,
+            speed: 1.1 + Math.random() * 2.4,
+            alpha: 0.14 + Math.random() * 0.28,
+            amber: Math.random() > 0.72,
+            thick: Math.random() > 0.85,
           });
         }
         return;
       }
       if (mode === "rain") {
-        const count = Math.floor(width / 10);
+        const count = Math.floor(width / 8);
         for (let i = 0; i < count; i += 1) {
           particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            len: 12 + Math.random() * 18,
-            speed: 4 + Math.random() * 5,
-            alpha: 0.12 + Math.random() * 0.25,
-            drift: -0.6 + Math.random() * -0.8,
+            len: 18 + Math.random() * 28,
+            speed: 6.5 + Math.random() * 7,
+            alpha: 0.16 + Math.random() * 0.28,
+            // Nearly vertical fall — soaked-through rain, not wind-blown
+            drift: (Math.random() - 0.5) * 0.15,
           });
         }
         return;
       }
       if (mode === "sun") {
-        const count = 18;
+        const count = 28;
         for (let i = 0; i < count; i += 1) {
           particles.push({
-            x: width * (0.55 + Math.random() * 0.4),
-            y: height * (0.05 + Math.random() * 0.45),
-            r: 1.5 + Math.random() * 3.5,
-            speed: 0.15 + Math.random() * 0.35,
-            alpha: 0.15 + Math.random() * 0.35,
+            x: width * (0.62 + Math.random() * 0.35),
+            y: height * (0.02 + Math.random() * 0.4),
+            r: 1.2 + Math.random() * 2.8,
+            speed: 0.25 + Math.random() * 0.55,
+            alpha: 0.2 + Math.random() * 0.4,
             phase: Math.random() * Math.PI * 2,
+            rise: 0.4 + Math.random() * 0.9,
           });
         }
         return;
@@ -384,71 +480,137 @@
       rebuildParticles();
     }
 
-    function drawWind() {
+    function drawWind(now) {
+      const elapsed = now - modeStarted;
+      const cycle = 4200;
+      const phase = (elapsed % cycle) / cycle;
+      // Peak gust mid-cycle — drives letter blow via CSS custom property
+      gust =
+        phase > 0.42 && phase < 0.72
+          ? Math.sin(((phase - 0.42) / 0.3) * Math.PI)
+          : phase > 0.78 && phase < 0.92
+            ? Math.sin(((phase - 0.78) / 0.14) * Math.PI) * 0.45
+            : 0;
+      scene.style.setProperty("--wind-gust", gust.toFixed(3));
+
+      const boost = 1 + gust * 2.2;
       for (const s of particles) {
+        const a = Math.min(0.55, s.alpha * (0.75 + gust * 0.9));
         ctx.strokeStyle = s.amber
-          ? `rgba(245, 165, 36, ${s.alpha})`
-          : `rgba(230, 234, 242, ${s.alpha})`;
-        ctx.lineWidth = s.amber ? 2.2 : 1.4;
+          ? `rgba(245, 165, 36, ${a})`
+          : `rgba(230, 234, 242, ${a})`;
+        ctx.lineWidth = (s.thick ? 3.2 : s.amber ? 2.4 : 1.5) * (1 + gust * 0.5);
         ctx.beginPath();
+        const bend = -10 - gust * 18;
         ctx.moveTo(s.x, s.y);
-        ctx.quadraticCurveTo(s.x + s.len * 0.45, s.y - 8, s.x + s.len, s.y + 2);
+        ctx.quadraticCurveTo(s.x + s.len * 0.4, s.y + bend, s.x + s.len * boost, s.y + 2);
         ctx.stroke();
-        s.x += s.speed * 2.4;
-        s.y += Math.sin((s.x + s.y) * 0.01) * 0.25;
-        if (s.x > width + 40) {
-          s.x = -60;
+        s.x += s.speed * (2.8 + gust * 5);
+        s.y += Math.sin((s.x + s.y) * 0.01) * (0.35 + gust * 1.2);
+        if (s.x > width + 80) {
+          s.x = -90 - Math.random() * 40;
           s.y = Math.random() * height;
         }
       }
     }
 
     function drawRain() {
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1.35;
       for (const d of particles) {
         ctx.strokeStyle = `rgba(180, 210, 255, ${d.alpha})`;
         ctx.beginPath();
         ctx.moveTo(d.x, d.y);
-        ctx.lineTo(d.x + d.drift * 4, d.y + d.len);
+        ctx.lineTo(d.x + d.drift, d.y + d.len);
         ctx.stroke();
-        d.x += d.drift;
         d.y += d.speed;
-        if (d.y > height + 20) {
-          d.y = -20;
+        d.x += d.drift * 0.2;
+        if (d.y > height + 30) {
+          d.y = -30 - Math.random() * 40;
           d.x = Math.random() * width;
         }
       }
     }
 
     function drawSun(now) {
-      const cx = width * 0.78;
-      const cy = height * 0.22;
-      const pulse = 0.55 + Math.sin(now / 900) * 0.08;
-      const glow = ctx.createRadialGradient(cx, cy, 10, cx, cy, Math.min(width, height) * 0.42);
-      glow.addColorStop(0, `rgba(245, 165, 36, ${0.42 * pulse})`);
-      glow.addColorStop(0.45, `rgba(245, 165, 36, ${0.12 * pulse})`);
-      glow.addColorStop(1, "rgba(245, 165, 36, 0)");
-      ctx.fillStyle = glow;
+      const elapsed = now - modeStarted;
+      const duration = modeDuration();
+      const build = Math.min(1, elapsed / (duration * 0.58));
+      const pulse = 0.78 + Math.sin(now / 650) * 0.14 + Math.sin(now / 1400) * 0.06;
+      const heat = Math.min(1, build * pulse);
+      scene.style.setProperty("--sun-heat", heat.toFixed(3));
+
+      const cx = width * 0.8;
+      const cy = height * 0.16;
+      const span = Math.min(width, height);
+      const coreR = 34 + heat * 18;
+
+      // Hot sky wash — deep orange/red, not pale lunar glow
+      const wash = ctx.createRadialGradient(cx, cy, coreR * 0.2, cx, cy, span * 0.62);
+      wash.addColorStop(0, `rgba(255, 245, 200, ${0.95 * heat})`);
+      wash.addColorStop(0.15, `rgba(255, 190, 50, ${0.72 * heat})`);
+      wash.addColorStop(0.4, `rgba(255, 110, 15, ${0.38 * heat})`);
+      wash.addColorStop(0.7, `rgba(220, 35, 0, ${0.16 * heat})`);
+      wash.addColorStop(1, "rgba(120, 10, 0, 0)");
+      ctx.fillStyle = wash;
       ctx.beginPath();
-      ctx.arc(cx, cy, Math.min(width, height) * 0.42, 0, Math.PI * 2);
+      ctx.arc(cx, cy, span * 0.62, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.fillStyle = `rgba(255, 214, 120, ${0.85 * pulse})`;
-      ctx.beginPath();
-      ctx.arc(cx, cy, 28, 0, Math.PI * 2);
-      ctx.fill();
-
-      for (const p of particles) {
-        const twinkle = 0.5 + Math.sin(now / 500 + p.phase) * 0.5;
-        ctx.fillStyle = `rgba(255, 220, 140, ${p.alpha * twinkle})`;
+      // Long solar rays
+      const rays = 18;
+      const spin = now / 16000;
+      for (let i = 0; i < rays; i += 1) {
+        const angle = spin + (i / rays) * Math.PI * 2;
+        const len = coreR * (2.6 + (i % 2) * 1.25 + heat * 1.8);
+        const half = 2.5 + (i % 2) * 2.5;
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        const x0 = cx + cos * coreR * 0.65;
+        const y0 = cy + sin * coreR * 0.65;
+        const x1 = cx + cos * len;
+        const y1 = cy + sin * len;
+        const px = -sin * half;
+        const py = cos * half;
+        const ray = ctx.createLinearGradient(x0, y0, x1, y1);
+        ray.addColorStop(0, `rgba(255, 220, 70, ${0.62 * heat})`);
+        ray.addColorStop(0.5, `rgba(255, 120, 15, ${0.3 * heat})`);
+        ray.addColorStop(1, "rgba(255, 30, 0, 0)");
+        ctx.fillStyle = ray;
         ctx.beginPath();
-        ctx.arc(
-          p.x + Math.sin(now / 1200 + p.phase) * 8,
-          p.y + Math.cos(now / 1400 + p.phase) * 6,
-          p.r,
-          0,
-          Math.PI * 2,
-        );
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x1 + px, y1 + py);
+        ctx.lineTo(x1 - px, y1 - py);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // Blazing core — white-hot center → amber → orange rim
+      const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+      core.addColorStop(0, "rgba(255, 255, 245, 1)");
+      core.addColorStop(0.25, "rgba(255, 236, 140, 0.98)");
+      core.addColorStop(0.55, "rgba(255, 170, 35, 0.95)");
+      core.addColorStop(0.82, "rgba(255, 90, 10, 0.85)");
+      core.addColorStop(1, "rgba(255, 40, 0, 0.05)");
+      ctx.fillStyle = core;
+      ctx.beginPath();
+      ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Sharp limb so it reads as a sun disc, not a moon
+      ctx.strokeStyle = `rgba(255, 190, 40, ${0.65 * heat})`;
+      ctx.lineWidth = 2 + heat * 2.5;
+      ctx.beginPath();
+      ctx.arc(cx, cy, coreR * 0.94, 0, Math.PI * 2);
+      ctx.stroke();
+
+      const band = height * 0.38;
+      for (const p of particles) {
+        const flicker = 0.45 + Math.sin(now / 380 + p.phase) * 0.55;
+        const px = p.x + Math.sin(now / 900 + p.phase) * 10;
+        const py = ((p.y - (now / 35) * p.rise) % band + band) % band;
+        ctx.fillStyle = `rgba(255, ${130 + Math.floor(90 * flicker)}, 30, ${p.alpha * flicker * heat})`;
+        ctx.beginPath();
+        ctx.arc(px, py, p.r * (0.85 + heat * 0.55), 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -507,7 +669,8 @@
 
     function frame(now) {
       const elapsed = now - modeStarted;
-      if (elapsed >= MODE_MS) {
+      const duration = modeDuration();
+      if (elapsed >= duration) {
         setMode(modeIndex + 1, now);
       }
 
@@ -515,13 +678,20 @@
       // Crossfade at edges via globalAlpha on scene
       let alpha = 1;
       if (elapsed < FADE_MS) alpha = elapsed / FADE_MS;
-      else if (elapsed > MODE_MS - FADE_MS) alpha = (MODE_MS - elapsed) / FADE_MS;
+      else if (elapsed > duration - FADE_MS) alpha = (duration - elapsed) / FADE_MS;
       alpha = Math.max(0.15, Math.min(1, alpha));
+
+      if (mode !== "wind") {
+        scene.style.setProperty("--wind-gust", "0");
+      }
+      if (mode !== "sun") {
+        scene.style.setProperty("--sun-heat", "0");
+      }
 
       ctx.clearRect(0, 0, width, height);
       ctx.save();
       ctx.globalAlpha = alpha;
-      if (mode === "wind") drawWind();
+      if (mode === "wind") drawWind(now);
       else if (mode === "rain") drawRain();
       else if (mode === "sun") drawSun(now);
       else drawLightning(now);
