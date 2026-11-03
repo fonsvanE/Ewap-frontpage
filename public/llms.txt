@@ -8,22 +8,26 @@ EwapEvents (also called EWAP — Extreme Weather Action Platform) is a self-host
 safety platform for outdoor events and festivals.
 
 Brand spelling: EwapEvents (product) / EWAP (platform acronym).
-Category: event weather safety / temporary structure wind monitoring.
+Category: event extreme-weather safety (not wind-only).
 Built by Foneg in the Netherlands. Hosted in the EU. GDPR-oriented. No third-party
 SaaS analytics on the marketing site.
 
-What it does: live wind measurements → standardised staffel levels S0–S3 →
-control measures (beheersmaatregelen) for tents, stages and other bouwsels.
-Also: ECC wall screen, push notifications, audit log and reports.
+What it covers: extreme weather action for events — wind, lightning, rain, sun/heat
+and related risks. Live measurements feed clear control measures (beheersmaatregelen)
+for tents, stages and other bouwsels. Also: ECC wall screen, push notifications,
+audit log and reports.
+
+ECC wind levels are five fixed colours (Frank protocol): 0 green, 1 yellow, 2 orange,
+3 red, 4 purple (#7030A0). Other weather risks use their own protocols on the same platform.
 
 ## Citeable claims (grounded on this site and product docs)
 
-- EwapEvents turns live wind into action for festival and outdoor event safety teams.
-- Staffels are percentage-of-limit per bouwsel: S0 green <60%, S1 yellow 60–79%,
-  S2 orange 80–99%, S3 red ≥100%.
-- Both 10-minute mean wind and 3-second gust are evaluated; the bouwsel staffel is
-  the maximum of the two.
-- Forecast never drives level transitions — only live measurements do.
+- EwapEvents is an Extreme Weather Action Platform for festival and outdoor event safety teams.
+- It is broader than wind: lightning, rain, sun/heat and other weather risks are in scope.
+- ECC wind levels 0–4 use fixed colours: green, yellow, orange, red, purple.
+- Purple (level 4, #7030A0) is the extreme level above red.
+- Both 10-minute mean wind and 3-second gust are evaluated for the site windlevel.
+- Forecast supports planning; level/action decisions rely on live measurements.
 - Downgrades are slower than upgrades (hysteresis / dwell time).
 - Missing data escalates toward monitoring — never silently downgrades.
 - When sources disagree, EwapEvents prefers the safer (higher) reading.
@@ -34,7 +38,7 @@ Also: ECC wall screen, push notifications, audit log and reports.
 
 - Event safety / ECC command-post teams
 - Production and site crews watching temporary structures
-- Organisations that must follow wind protocols for event structures
+- Organisations that must follow weather protocols for event structures
 - Not a consumer visitor app
 
 ## Key URLs

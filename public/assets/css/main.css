@@ -20,6 +20,8 @@
   --s2-fg: #0b1b34;
   --s3-bg: #ff0000;
   --s3-fg: #ffffff;
+  --s4-bg: #7030a0;
+  --s4-fg: #ffffff;
   --font-display: "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -266,6 +268,46 @@ a {
     radial-gradient(ellipse 55% 45% at 12% 88%, color-mix(in srgb, var(--fog) 10%, transparent), transparent 50%),
     linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--midnight) 78%, transparent) 100%);
   pointer-events: none;
+  transition: background 700ms ease, opacity 700ms ease;
+}
+
+.hero[data-weather="wind"] .hero__veil {
+  background:
+    radial-gradient(ellipse 70% 55% at 78% 18%, color-mix(in srgb, var(--signal) 22%, transparent), transparent 58%),
+    radial-gradient(ellipse 55% 45% at 12% 88%, color-mix(in srgb, var(--fog) 10%, transparent), transparent 50%),
+    linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--midnight) 78%, transparent) 100%);
+}
+
+.hero[data-weather="lightning"] .hero__veil {
+  background:
+    radial-gradient(ellipse 50% 40% at 60% 10%, rgba(180, 200, 255, 0.2), transparent 55%),
+    radial-gradient(ellipse 40% 35% at 20% 70%, rgba(120, 140, 200, 0.12), transparent 50%),
+    linear-gradient(180deg, transparent 35%, color-mix(in srgb, var(--midnight) 82%, transparent) 100%);
+}
+
+.hero[data-weather="rain"] .hero__veil {
+  background:
+    radial-gradient(ellipse 60% 45% at 30% 15%, rgba(90, 140, 200, 0.22), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 75%, rgba(70, 110, 170, 0.14), transparent 50%),
+    linear-gradient(180deg, transparent 35%, color-mix(in srgb, var(--midnight) 84%, transparent) 100%);
+}
+
+.hero[data-weather="sun"] .hero__veil {
+  background:
+    radial-gradient(ellipse 55% 50% at 78% 20%, color-mix(in srgb, var(--signal) 38%, transparent), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 15% 80%, rgba(245, 165, 36, 0.1), transparent 50%),
+    linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--midnight) 78%, transparent) 100%);
+}
+
+.hero__weather {
+  margin: 0 0 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--signal);
+  animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero__content {
@@ -381,6 +423,47 @@ a {
   font-size: 1.1rem;
 }
 
+.hazards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem 1.75rem;
+}
+
+@media (min-width: 720px) {
+  .hazards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .hazards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.hazards li {
+  padding-top: 1rem;
+  border-top: 3px solid var(--navy);
+}
+
+.hazards strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hazards span {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--slate);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
 /* —— Interactive levels —— */
 .levels {
   display: grid;
@@ -420,6 +503,29 @@ a {
 
 .level-stage[data-level="3"] {
   background: color-mix(in srgb, var(--s3-bg) 28%, var(--midnight));
+}
+
+.level-stage[data-level="4"] {
+  background: color-mix(in srgb, var(--s4-bg) 32%, var(--midnight));
+}
+
+.level-stage.is-level-flash {
+  animation: level-flash 480ms ease;
+}
+
+@keyframes level-flash {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  35% {
+    transform: scale(1.01);
+    filter: brightness(1.12);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
 }
 
 .level-badge {
@@ -497,6 +603,22 @@ a {
   padding-top: 0;
 }
 
+.control-block--row {
+  display: grid;
+  gap: 1rem;
+  align-items: end;
+}
+
+@media (min-width: 640px) {
+  .control-block--row {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.level-auto {
+  white-space: nowrap;
+}
+
 .control-block label {
   display: block;
   font-weight: 700;
@@ -517,7 +639,7 @@ a {
 
 .level-tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.5rem;
 }
 
@@ -544,24 +666,29 @@ a {
   background: var(--tab-bg, var(--fog));
 }
 
-.level-tab[data-level="0"] {
+.level-tab[data-level-tab="0"] {
   --tab-bg: var(--s0-bg);
   --tab-fg: var(--s0-fg);
 }
 
-.level-tab[data-level="1"] {
+.level-tab[data-level-tab="1"] {
   --tab-bg: var(--s1-bg);
   --tab-fg: var(--s1-fg);
 }
 
-.level-tab[data-level="2"] {
+.level-tab[data-level-tab="2"] {
   --tab-bg: var(--s2-bg);
   --tab-fg: var(--s2-fg);
 }
 
-.level-tab[data-level="3"] {
+.level-tab[data-level-tab="3"] {
   --tab-bg: var(--s3-bg);
   --tab-fg: var(--s3-fg);
+}
+
+.level-tab[data-level-tab="4"] {
+  --tab-bg: var(--s4-bg);
+  --tab-fg: var(--s4-fg);
 }
 
 .bouwsel-list {
